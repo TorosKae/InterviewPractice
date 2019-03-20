@@ -6,6 +6,25 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
+/**
+ * https://www.hackerrank.com/challenges/ctci-array-left-rotation
+ *
+ * Arrays: left rotation
+ * by 1 elemens all elements shift to the left
+ * in fact 1 element from left goes to the end of queue
+ * f.e. 1 2 3 4 5 (4 rotation)
+ * 23451 -> 34512 -> 45123 -> 51234
+ *
+ * for every element we could calc the exact index
+ * -----------------
+ * (i + n - d) % n
+ * i - current index
+ * n - length
+ * d - shift
+ * % - remainder controls
+ * if element goes out of right boundary > length
+ * -----------------
+ */
 public class LeftRotation {
     // Complete the rotLeft function below.
     static int[] rotLeft(int[] a, int d) {
@@ -14,7 +33,8 @@ public class LeftRotation {
 
         for (int i = 0; i < n; i++) {
             int aItem = a[i];
-            //пересчет нового индекса
+            //calc index at once
+            //where current element will be
             arr[(i+n-d)%n] = aItem;
         }
         return arr;
