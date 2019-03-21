@@ -5,15 +5,24 @@ import java.text.*;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
+
+/**
+ * https://www.hackerrank.com/challenges/minimum-swaps-2
+ * we have [7, 1, 3, 2, 4, 5, 6]
+ * we are to find minimum swaps
+ *
+ * lets sort the clone array
+ * and find the difference between them
+ * swapping elements in unsorted arr
+ */
 public class MinimumSwaps {
     // Complete the minimumSwaps function below.
-    static int minimumSwaps(int[] arr) {
+    private static int minimumSwaps(int[] arr) {
 
         int[] aSorted = arr.clone();
         Arrays.sort(aSorted);
         int diff = 0;
         for (int i = 0; i < arr.length; i++) {
-            //System.out.println("arr[i] "+arr[i]+ " (i+1)"+(i+1));
             if(aSorted[i]!=arr[i]){
                 for (int j = i+1; j < arr.length; j++) {
                     if (aSorted[i]==arr[j]){
@@ -24,7 +33,6 @@ public class MinimumSwaps {
                         break;
                     }
                 }
-                //System.out.println("diff "+diff);
             }
         }
         return diff;
@@ -33,7 +41,7 @@ public class MinimumSwaps {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         //BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         int n = scanner.nextInt();

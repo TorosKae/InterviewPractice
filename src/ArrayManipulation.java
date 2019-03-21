@@ -6,10 +6,31 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
+
+/**
+ * https://www.hackerrank.com/challenges/crush/
+ * There is array of 0 length = n
+ * there are some quarries like
+ * from a to b add x value
+ * find the maximum value
+ *
+ *
+ * We will count summ in input (+summ)
+ * and last on output b+1 (-summ)
+ * f.e. 00000
+ * 1) 11100 a(1)=1 a(4)=-1
+ * 2) 01100 a(2)=1 a(4)=-2
+ * 3) 00111 a(3)=1
+ * 111-20
+ * 1+1+1 = 3max
+ * 3-2=1 not max
+ * max = 3
+ *
+ */
 public class ArrayManipulation {
 
     // Complete the arrayManipulation function below.
-    static long arrayManipulation(int n, int[][] queries) {
+    private static long arrayManipulation(int n, int[][] queries) {
         Long[] arr = new Long[n];
 
         for (int i = 0; i < n; i++) {
@@ -17,15 +38,16 @@ public class ArrayManipulation {
         }
         Long max = 0L;
 
-        for (int i = 0; i < queries.length; i++) {
-            int a = queries[i][0];
-            int b = queries[i][1];
-            Long sum = Integer.toUnsignedLong(queries[i][2]);
-            arr[a-1] += sum;
-            if (b < n) { //n-1 тк от нуля
+        for (int[] query : queries) {
+            int a = query[0];
+            int b = query[1];
+            Long sum = Integer.toUnsignedLong(query[2]);
+            //a-1 as in quarries index goes from 1
+            arr[a - 1] += sum;
+            if (b < n) {
                 arr[b] -= sum;
             }
-            System.out.print((a)+"="+arr[a-1]+" "+(b)+"="+arr[b]);
+            System.out.print((a) + "=" + arr[a - 1] + " " + (b) + "=" + arr[b]);
             System.out.println();
         }
         Long tmp = 0L;
@@ -41,7 +63,7 @@ public class ArrayManipulation {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         //BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         String[] nm = scanner.nextLine().split(" ");
