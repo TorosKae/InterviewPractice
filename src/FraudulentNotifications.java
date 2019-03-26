@@ -6,6 +6,16 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
+/**
+ * https://www.hackerrank.com/challenges/fraudulent-activity-notifications
+ * find median
+ * array should be sorted (TreeMap of frequencies, Array.sort(), countingSort)
+ * length%2==0 (average value of 2 in the middle):
+ *  (valLeft + valRight)/2.0
+ * else: (middle value):
+ *  (length-1)/2
+ */
+
 public class FraudulentNotifications {
 
     /*public static void countingSort( int[] input,int n)
