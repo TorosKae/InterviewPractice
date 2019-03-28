@@ -6,6 +6,11 @@ import java.util.*;
 import java.
 util.concurrent.*;
 import java.util.regex.*;
+
+/**
+ * https://www.hackerrank.com/challenges/two-strings
+ */
+
 public class TwoStrings {
     // Complete the twoStrings function below.
     static String compare(String lessStr, String largeStr){

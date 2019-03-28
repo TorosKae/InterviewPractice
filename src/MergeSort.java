@@ -6,10 +6,23 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
+/**
+ * https://www.hackerrank.com/challenges/ctci-merge-sort
+ * 2 1 3 1 2 count of swaps = 4
+ * we have: 58431627
+ * divide 5843 1627
+ * 58 43 16 27
+ * 5 8 4 3 1 6 2 7
+ * 58 34 16 27
+ * for two parts 58(i) and 34(j)
+ * we have aux [0 0 0 0]
+ * left > mid :
+ * 5>3 => 38 54
+ *
+ */
 public class MergeSort {
     private static long cnt = 0;
-    public static int order = 0;
-    double probability = 1/5;
+
     private static long countInversions(int[] arr) {
         int[] aux = arr.clone();
         countInversions(arr, 0, arr.length - 1, aux);
@@ -81,7 +94,6 @@ public class MergeSort {
 
             long result = countInversions(arr);
             cnt = 0;
-            order = 0;
             System.out.println(result);
             //bufferedWriter.write(String.valueOf(result));
             //bufferedWriter.newLine();

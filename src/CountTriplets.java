@@ -12,20 +12,44 @@ import java.util.stream.*;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
+/**
+ * https://www.hackerrank.com/challenges/count-triplets-1
+ * geom progression is b1, bn = b(n-1)*r
+ * have queue 1 3 9 9 27 81 | 3
+ * expMap is map of expected values by fact, f.e. for 3 it's 9
+ * resMap is map to count result expected values in potentials
+ *  we close expected val if it's te same as current
+ *  and wait for new values based on count of expected current val
+ *
+ * 1: expMap (3,1)
+ * 3: resMap (9,1)
+ *    expMap (9,1)
+ * 9: resMap (27,1)
+ *    expMap (27,1)
+ * 9: resMap (27,2)
+ *    expMap (27,2)
+ * 27:resMap (81,2) !!resMap <> expMap
+ *    expMap (81,1)
+ * 81:resMap (81*2,1)
+ *    expMap (81*2,1)
+ *
+ * Count resMap values:
+ * (9,1)(27,2)(81,2)(81*2,1) = 6
+ */
 public class CountTriplets {
 
     // Complete the countTriplets function below.
     static long countTriplets(List<Long> arr, long r) {
         long res = 0L;
 
-        Map<Long,Long> a2 = new HashMap<>(); //expected
-        Map<Long,Long> a3 = new HashMap<>(); //check fill of triple
-        Iterator last = arr.listIterator();
+        Map<Long,Long> expMap = new HashMap<>(); //expected
+        Map<Long,Long> resMap = new HashMap<>(); //check fill of triple
+
         for (int i = 0; i < arr.size(); i++) {
             long curVal = arr.get(i);
             System.out.println("смотрим "+curVal);
             //if already there is full triplet, counting
-            res += a3.getOrDefault(curVal,0L);
+            res += resMap.getOrDefault(curVal,0L);
 
             if (i==arr.size()-1){
                 return res;
@@ -33,13 +57,13 @@ public class CountTriplets {
             System.out.println("res = "+res);
             //if was suggested current value (waiting)
             //fill 3rd array with curValue, accounting other values of curVal key
-            if (a2.containsKey(curVal)){
-                a3.put(curVal*r,a3.getOrDefault(curVal*r,0L)+a2.get(curVal));
-                System.out.println("a3 "+a3.toString());
+            if (expMap.containsKey(curVal)){
+                resMap.put(curVal*r,resMap.getOrDefault(curVal*r,0L)+expMap.get(curVal));
+                System.out.println("ares "+resMap.toString());
             }
             //suggested 2nd value
-            a2.put(curVal*r, a2.getOrDefault(curVal*r,0L)+1);
-            System.out.println("a2 "+a2.toString());
+            expMap.put(curVal*r, expMap.getOrDefault(curVal*r,0L)+1);
+            System.out.println("aexp "+expMap.toString());
         }
         return res;
     }

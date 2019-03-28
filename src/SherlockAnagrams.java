@@ -6,6 +6,17 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
+/**
+ * https://www.hackerrank.com/challenges/sherlock-and-anagrams
+ * abba has 4 anagrams
+ * aa, bb, ab ba, abb bba
+ * run by all combinations of substrings unsorted
+ * make an arr
+ * sort an arr
+ * make sorted substr
+ * find it in Map
+ *
+ */
 public class SherlockAnagrams {
 
     // Complete the sherlockAndAnagrams function below.

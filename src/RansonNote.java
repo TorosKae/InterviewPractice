@@ -5,6 +5,10 @@ import java.text.*;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
+
+/**
+ * https://www.hackerrank.com/challenges/ctci-ransom-note
+ */
 public class RansonNote {
     // Complete the checkMagazine function below.
     static void checkMagazine(String[] magazine, String[] note) {
