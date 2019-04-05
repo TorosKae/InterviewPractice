@@ -10,6 +10,24 @@ import java.util.stream.*;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
+/**
+ * https://www.hackerrank.com/challenges/frequency-queries
+ * 1 - add element
+ * 2 - remove element
+ * 3 - if there is such frequency
+ *
+ * we make Map of frequency
+ * when we have o add or remove
+ * we chang the count of previous frequency
+ * so need to update it too
+ * 3 3 4 4 5
+ * 2 (2) - 2 count with frequency 2 33 44
+ * 1 (1) - 1 frequency 1
+ * adding 5
+ * now 33 44 55
+ * 2 frequency + 1
+ * 1 frequency - 1 and remove
+ */
 public class FrequencyQueries {
 
     static Map<Integer,Integer> updFreqMap(Map<Integer,Integer> freqMap,int newVal,int direction){

@@ -2,10 +2,12 @@ public class Main {
 
     public static void main(String[] args) {
         //0 1 2 3 4 5 -
-        double sum = 2;
-        double n = 4;
-        double average = sum%n;
-        System.out.println(average);
+        String s = "hello";
+        StringBuilder s2 = new StringBuilder("hello");
+        StringBuilder s3 = new StringBuilder("hello");
+        System.out.println(s.equals(s2));
+
+        System.out.println(s.toUpperCase());
 
     }
 }
