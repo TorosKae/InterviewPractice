@@ -2,9 +2,9 @@ public class Main {
 
     public static void main(String[] args) {
         //0 1 2 3 4 5 -
-        double sum = 2;
-        double n = 4;
-        double average = sum%n;
+        double  sum = 5.0;
+        double n = 3.0;
+        double average = Math.ceil(sum/n);
         System.out.println(average);
 
     }
