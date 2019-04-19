@@ -38,21 +38,39 @@ public class LuckBalance {
             others i res--
          k times we choose max of [][1]
         */
+        Integer[] sortedArr = new Integer[contests.length];
 
         for (int i = 0; i < contests.length; i++) {
             if(contests[i][1]==0){
                 result+=contests[i][0];
+                sortedArr[i] = 0;
+                //System.out.println("result + "+contests[i][0]);
             } else {
-
+                sortedArr[i] = contests[i][0];
             }
         }
+        Arrays.sort(sortedArr,Collections.reverseOrder());
+        int idx = 1;
+        for (int i = 0; i < sortedArr.length; i++) {
+            Integer c =sortedArr[i];
+            //first k values to increase luck
+            if (k - idx >= 0){
+                result+=c;
+                //System.out.println("result + "+c);
+            } else { //values not in max k values, it decrease luck for 1
+                result-=c;
+                //System.out.println("result - "+1);
+            }
+            idx++;
+        }
+
         return result;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+        //BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         String[] nk = scanner.nextLine().split(" ");
 
@@ -73,11 +91,11 @@ public class LuckBalance {
         }
 
         int result = luckBalance(k, contests);
+        System.out.println(result);
+        //bufferedWriter.write(String.valueOf(result));
+        //bufferedWriter.newLine();
 
-        bufferedWriter.write(String.valueOf(result));
-        bufferedWriter.newLine();
-
-        bufferedWriter.close();
+        //bufferedWriter.close();
 
         scanner.close();
     }
